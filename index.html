@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>$FORGOT</title>
+
+<style>
+body {
+  margin:0;
+  height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:#07070a;
+  font-family:Arial, sans-serif;
+  color:white;
+  text-align:center;
+}
+
+.wrapper {
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:20px;
+}
+
+img {
+  width:300px;
+  max-width:80vw;
+  transition:filter 0.4s ease;
+}
+
+p {
+  opacity:0.7;
+  max-width:500px;
+}
+</style>
+</head>
+
+<body>
+<div class="wrapper">
+  <h1>$FORGOT</h1>
+  <img id="logo" src="logo.png" alt="FORGOT Logo"/>
+  <p>The logo gets blurrier every day. Commitment to the bit.</p>
+</div>
+
+<script>
+const LAUNCH_DATE = "2026-02-23";
+const BLUR_PER_DAY = 0.2;
+const MAX_BLUR = 20;
+
+function daysSince(dateStr) {
+  const start = new Date(dateStr + "T00:00:00");
+  const now = new Date();
+  const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+  const diff = today - start;
+  return Math.max(0, Math.floor(diff / 86400000));
+}
+
+function updateBlur() {
+  const days = daysSince(LAUNCH_DATE);
+  const blur = Math.min(MAX_BLUR, days * BLUR_PER_DAY);
+  document.getElementById("logo").style.filter = `blur(${blur}px)`;
+}
+
+updateBlur();
+</script>
+</body>
+</html>
